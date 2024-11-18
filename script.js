@@ -19,5 +19,6 @@ window.onload = function () {
     }
 };
 
-// Add the event listener to the body (user can click anywhere on the page to toggle the theme)
-document.body.addEventListener('click', toggleDarkMode);
+// Add the event listener to the text only (not anywhere else)
+const mainText = document.getElementById('main-text');
+mainText.addEventListener('click', toggleDarkMode);
