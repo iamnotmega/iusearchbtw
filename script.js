@@ -1,24 +1,20 @@
-// Get the body and main text elements
-const body = document.body;
-const mainText = document.getElementById("main-text");
-
-// Check for the saved theme in localStorage and apply it
-if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-mode");
+// Check if the user has a saved theme preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    document.body.classList.add(savedTheme);
 }
 
-// Add a click event listener to the document
-document.addEventListener("click", function(event) {
-    // Check if the click was outside the #main-text element
-    if (!mainText.contains(event.target)) {
-        // Toggle dark mode on click
-        body.classList.toggle("dark-mode");
+// Select the main text element and the body
+const mainText = document.getElementById('main-text');
+const body = document.body;
 
-        // Save the theme in localStorage
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-        } else {
-            localStorage.setItem("theme", "light");
-        }
+// Add event listener for clicks anywhere except the text
+body.addEventListener('click', function(event) {
+    // Check if the click target is not the main text
+    if (event.target !== mainText) {
+        // Toggle dark mode on body
+        body.classList.toggle('dark-mode');
+        // Save the theme preference in localStorage
+        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark-mode' : '');
     }
 });
