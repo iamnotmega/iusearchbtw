@@ -12,6 +12,7 @@ body {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer; /* Change cursor to indicate it's clickable */
+    user-select: none; /* Prevent text selection */
 }
 
 /* Dark mode styles */
