@@ -11,6 +11,7 @@ body {
 #main-text {
     font-size: 40px;
     font-weight: bold;
+    cursor: pointer; /* Change cursor to indicate it's clickable */
 }
 
 /* Dark mode styles */
