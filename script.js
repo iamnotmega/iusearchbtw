@@ -1,24 +1,24 @@
-// Function to toggle dark mode
-function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle('dark-mode');
+// Get the body and main text elements
+const body = document.body;
+const mainText = document.getElementById("main-text");
 
-    // Save the theme preference in localStorage
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+// Check for the saved theme in localStorage and apply it
+if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
 }
 
-// Check the saved theme and apply it on page load
-window.onload = function () {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-};
+// Add a click event listener to the document
+document.addEventListener("click", function(event) {
+    // Check if the click was outside the #main-text element
+    if (!mainText.contains(event.target)) {
+        // Toggle dark mode on click
+        body.classList.toggle("dark-mode");
 
-// Add the event listener to the text only (not anywhere else)
-const mainText = document.getElementById('main-text');
-mainText.addEventListener('click', toggleDarkMode);
+        // Save the theme in localStorage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    }
+});
