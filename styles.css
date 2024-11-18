@@ -13,6 +13,8 @@ body {
     font-weight: bold;
     cursor: pointer; /* Change cursor to indicate it's clickable */
     user-select: none; /* Prevent text selection */
+    -webkit-user-select: none; /* For Safari and older WebKit browsers */
+    -ms-user-select: none; /* For older Internet Explorer versions */
 }
 
 /* Dark mode styles */
