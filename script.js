@@ -4,11 +4,11 @@ function toggleTheme() {
     body.classList.toggle('dark-mode');
 
     // Save the current theme preference in localStorage
-    const isDarkMode = body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
 }
 
-// Load the saved theme from localStorage
+// Load the saved theme from localStorage on window load
 window.onload = () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -16,24 +16,39 @@ window.onload = () => {
     }
 };
 
-// Detecting the typing of "thickofit" and playing the audio after 1 second
-let input = [];
-const thickOfItSequence = "thickofit";
-const thickOfItAudio = new Audio('idk.mp3'); // Audio for "thickofit"
+// Typing sequence detection for "thickofit"
+const typingSequences = {
+    "thickofit": {
+        audio: new Audio('idk.mp3'),  // Path to audio
+        delay: 1000 // 1-second delay
+    },
+    "konami": {
+        audio: new Audio('rickroll.mp3'),
+        delay: 1000
+    }
+};
 
-// Listen for keydown events
-window.addEventListener('keydown', function(event) {
-    input.push(event.key.toLowerCase());
+let inputBuffer = [];
+const maxSequenceLength = Math.max(...Object.keys(typingSequences).map(seq => seq.length));
 
-    // Keep the input array to the length of the target sequence
-    if (input.length > thickOfItSequence.length) {
-        input.shift();
+// Function to detect the key sequences
+function detectSequence(event) {
+    inputBuffer.push(event.key.toLowerCase());
+    // Keep the input array to the length of the longest sequence
+    if (inputBuffer.length > maxSequenceLength) {
+        inputBuffer.shift();
     }
 
-    // Check if the current input matches the "thickofit" sequence
-    if (input.join('') === thickOfItSequence) {
-        setTimeout(() => {
-            thickOfItAudio.play(); // Play the "thickofit" audio after 1 second
-        }, 1000); // 1-second delay
+    // Check each sequence
+    for (const [sequence, data] of Object.entries(typingSequences)) {
+        if (inputBuffer.join('') === sequence) {
+            // Play the corresponding audio after a delay
+            setTimeout(() => {
+                data.audio.play();
+            }, data.delay);
+        }
     }
-});
+}
+
+// Event listener for detecting keydown and triggering the sequences
+window.addEventListener('keydown', detectSequence);
