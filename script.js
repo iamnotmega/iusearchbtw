@@ -19,16 +19,14 @@ window.onload = () => {
 // Detecting the typing of "thickofit" and "coconutmall"
 let input = [];
 const thickOfItSequence = "thickofit";
-const coconutMallSequence = "coconutmall";
 const thickOfItAudio = new Audio('idk.mp3'); // Audio for "thickofit"
-const coconutMallAudio = new Audio('iusearchbtw.mp3'); // Audio for "coconutmall"
 
 window.addEventListener('keydown', function(event) {
     // Append the key pressed to the input array
     input.push(event.key.toLowerCase()); 
 
     // Keep the input array to the length of the target sequences
-    if (input.length > Math.max(thickOfItSequence.length, coconutMallSequence.length)) {
+    if (input.length > Math.max(thickOfItSequence.length) {
         input.shift();
     }
 
@@ -39,10 +37,4 @@ window.addEventListener('keydown', function(event) {
         }, 1000); // Wait for 1 second
     }
 
-    // Check if the current input matches the "coconutmall" sequence
-    if (input.join('') === coconutMallSequence) {
-        setTimeout(() => {
-            coconutMallAudio.play(); // Play the "coconutmall" audio after 1 second
-        }, 1000); // Wait for 1 second
-    }
 });
