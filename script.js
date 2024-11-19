@@ -26,7 +26,7 @@ window.addEventListener('keydown', function(event) {
     input.push(event.key.toLowerCase()); 
 
     // Keep the input array to the length of the target sequences
-    if (input.length > Math.max(thickOfItSequence.length) {
+    if (input.length > thickOfItSequence.length) {
         input.shift();
     }
 
@@ -36,5 +36,4 @@ window.addEventListener('keydown', function(event) {
             thickOfItAudio.play(); // Play the "thickofit" audio after 1 second
         }, 1000); // Wait for 1 second
     }
-
 });
