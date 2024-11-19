@@ -16,16 +16,16 @@ window.onload = () => {
     }
 };
 
-// Detecting the typing of "thickofit" and "coconutmall"
+// Detecting the typing of "thickofit" and playing the audio after 1 second
 let input = [];
 const thickOfItSequence = "thickofit";
 const thickOfItAudio = new Audio('idk.mp3'); // Audio for "thickofit"
 
+// Listen for keydown events
 window.addEventListener('keydown', function(event) {
-    // Append the key pressed to the input array
-    input.push(event.key.toLowerCase()); 
+    input.push(event.key.toLowerCase());
 
-    // Keep the input array to the length of the target sequences
+    // Keep the input array to the length of the target sequence
     if (input.length > thickOfItSequence.length) {
         input.shift();
     }
@@ -34,6 +34,6 @@ window.addEventListener('keydown', function(event) {
     if (input.join('') === thickOfItSequence) {
         setTimeout(() => {
             thickOfItAudio.play(); // Play the "thickofit" audio after 1 second
-        }, 1000); // Wait for 1 second
+        }, 1000); // 1-second delay
     }
 });
