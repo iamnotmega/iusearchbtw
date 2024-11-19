@@ -1,4 +1,4 @@
-/* Light mode styles */
+/* Base styles for light mode */
 body {
     background-color: #fff;
     color: #000;
@@ -8,6 +8,7 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
+/* Text Style */
 #main-text {
     font-size: 40px;
     font-weight: bold;
